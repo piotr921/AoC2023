@@ -5,12 +5,11 @@ class CharArrayUtils {
         val l = input.last { c -> c.isDigit() }
 
         val number: String =
-            if (input.indexOf(f) != input.indexOf(l)) {
+            if (input.indexOf(f) != input.lastIndexOf(l)) {
                 f.toString() + l.toString()
             } else {
                 f.toString()
             }
-        println(number)
         return number.toInt()
     }
 }

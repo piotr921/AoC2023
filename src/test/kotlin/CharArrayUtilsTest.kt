@@ -36,5 +36,7 @@ class CharArrayUtilsTest {
         val n2 = cau.mapToNumberFromFirstAndLastChar("lpbjvpbtdfvtxtdvkpjs7qrvddkzmjtlqtg".toCharArray())
         assertEquals(7, n2)
 
+        val n3 = cau.mapToNumberFromFirstAndLastChar("qd84vmvgmssixsix8on8tps".toCharArray())
+        assertEquals(88, n3)
     }
 }

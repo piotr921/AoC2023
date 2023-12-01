@@ -1,5 +1,3 @@
-import kotlin.streams.toList
-
 class Day1 {
     private val letterNumbers: Map<String, String> = mapOf(
         Pair("one", "1"),
@@ -19,4 +17,37 @@ class Day1 {
             .map { ca -> CharArrayUtils().mapToNumberFromFirstAndLastChar(ca) }
             .toList()
             .sum()
+
+    fun replaceTextWithNumbersInLine(line: String): String {
+        var result = line
+        val firstNumber = result.findAnyOf(letterNumbers.keys)
+        if (firstNumber != null) {
+            val replacement = letterNumbers[firstNumber.second]
+            if (replacement != null) {
+                result = result.replaceRange(
+                    firstNumber.first,
+                    firstNumber.first + firstNumber.second.length,
+                    replacement.toString()
+                )
+            }
+        }
+
+        val lastNumber = result.findLastAnyOf(letterNumbers.keys)
+        if (lastNumber != null) {
+            val replacement = letterNumbers[lastNumber.second]
+
+            if (replacement != null) {
+                result = result.replaceRange(
+                    lastNumber.first,
+                    lastNumber.first + lastNumber.second.length,
+                    replacement.toString()
+                )
+            }
+        }
+        return result
+    }
+
+    fun fixLines(allLines: List<String>): List<String> {
+        return allLines.stream().map { l -> replaceTextWithNumbersInLine(l) }.toList()
+    }
 }
