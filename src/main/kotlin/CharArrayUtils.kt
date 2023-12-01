@@ -1,6 +1,6 @@
 class CharArrayUtils {
 
-    fun mapToNumberFromFirstAndLastChar(input: CharArray): Int {
+    fun mapFirstAndLastDigitToNumber(input: CharArray): Int {
         val f = input.first { c -> c.isDigit() }
         val l = input.last { c -> c.isDigit() }
 

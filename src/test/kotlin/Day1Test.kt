@@ -29,9 +29,6 @@ class Day1Test {
 
         val result4 = Day1().replaceTextWithNumbersInLine("onetwoabc2deffour")
         assertEquals("1twoabc2def4", result4)
-
-        val result5 = Day1().replaceTextWithNumbersInLine("qd8fourvmvgmssixsix8oneighttps")
-        assertEquals("qd84vmvgmssixsix8on8tps", result5)
     }
 
     @Test

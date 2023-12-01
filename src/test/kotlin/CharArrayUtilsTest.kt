@@ -30,13 +30,13 @@ class CharArrayUtilsTest {
     @Test
     fun shouldBuildNumberFromCharArrayFirstAndLastDigit() {
         val cau = CharArrayUtils()
-        val number = cau.mapToNumberFromFirstAndLastChar("abc123".toCharArray())
+        val number = cau.mapFirstAndLastDigitToNumber("abc123".toCharArray())
         assertEquals(13, number)
 
-        val n2 = cau.mapToNumberFromFirstAndLastChar("lpbjvpbtdfvtxtdvkpjs7qrvddkzmjtlqtg".toCharArray())
+        val n2 = cau.mapFirstAndLastDigitToNumber("lpbjvpbtdfvtxtdvkpjs7qrvddkzmjtlqtg".toCharArray())
         assertEquals(7, n2)
 
-        val n3 = cau.mapToNumberFromFirstAndLastChar("qd84vmvgmssixsix8on8tps".toCharArray())
+        val n3 = cau.mapFirstAndLastDigitToNumber("qd84vmvgmssixsix8on8tps".toCharArray())
         assertEquals(88, n3)
     }
 }

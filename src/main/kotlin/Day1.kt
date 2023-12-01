@@ -14,7 +14,7 @@ class Day1 {
     fun calculateCalibrationValue(input: List<String>): Int =
         input.stream()
             .map { line -> line.toCharArray() }
-            .map { ca -> CharArrayUtils().mapToNumberFromFirstAndLastChar(ca) }
+            .map { ca -> CharArrayUtils().mapFirstAndLastDigitToNumber(ca) }
             .toList()
             .sum()
 
@@ -22,30 +22,37 @@ class Day1 {
         var result = line
         val firstNumber = result.findAnyOf(letterNumbers.keys)
         if (firstNumber != null) {
-            val replacement = letterNumbers[firstNumber.second]
-            if (replacement != null) {
                 result = result.replaceRange(
                     firstNumber.first,
                     firstNumber.first + firstNumber.second.length,
-                    replacement.toString()
+                    letterNumbers[firstNumber.second].toString()
                 )
-            }
         }
 
         val lastNumber = result.findLastAnyOf(letterNumbers.keys)
         if (lastNumber != null) {
-            val replacement = letterNumbers[lastNumber.second]
-
-            if (replacement != null) {
                 result = result.replaceRange(
                     lastNumber.first,
                     lastNumber.first + lastNumber.second.length,
-                    replacement.toString()
+                    letterNumbers[lastNumber.second].toString()
                 )
             }
-        }
+        println(result)
         return result
     }
+
+//    fun replaceTextWithNumbersInLine(line: String): String {
+//        var result = line
+//        while(result.findAnyOf(letterNumbers.keys) != null) {
+//            val found = result.findAnyOf(letterNumbers.keys)
+//            if (found != null) {
+//                val replacement = letterNumbers[found.second]
+//                result = result.replaceRange(found.first, found.first + found.second.length, replacement.toString())
+//            }
+//        }
+//        println(result)
+//        return result
+//    }
 
     fun fixLines(allLines: List<String>): List<String> {
         return allLines.stream().map { l -> replaceTextWithNumbersInLine(l) }.toList()
