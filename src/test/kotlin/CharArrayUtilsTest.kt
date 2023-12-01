@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 class CharArrayUtilsTest {
 
@@ -18,6 +18,11 @@ class CharArrayUtilsTest {
     }
 
     @Test
+    fun shouldFindLastText() {
+        println("abc123four".lastIndexOf("four"))
+    }
+
+    @Test
     fun shouldBuildNumberFromTwoChars() {
         assertEquals("78", '7'.toString() + '8'.toString())
     }
@@ -27,5 +32,9 @@ class CharArrayUtilsTest {
         val cau = CharArrayUtils()
         val number = cau.mapToNumberFromFirstAndLastChar("abc123".toCharArray())
         assertEquals(13, number)
+
+        val n2 = cau.mapToNumberFromFirstAndLastChar("lpbjvpbtdfvtxtdvkpjs7qrvddkzmjtlqtg".toCharArray())
+        assertEquals(7, n2)
+
     }
 }
