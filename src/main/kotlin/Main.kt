@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     println("Hello Advent Of Code 2023!")
 
     val allLines = fr.readAllLines("2.txt")
-    val d2 = day2.calculate(allLines)
+    val d2 = day2.calculatePart2(allLines)
 
     // 224 - your answer is too low
     println(d2)
