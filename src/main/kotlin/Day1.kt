@@ -21,6 +21,7 @@ class Day1 {
     fun replaceTextWithNumbersInLine(line: String): String {
         var result = line
         val firstNumber = result.findAnyOf(letterNumbers.keys)
+
         if (firstNumber != null) {
                 result = result.replaceRange(
                     firstNumber.first,
@@ -40,19 +41,6 @@ class Day1 {
         println(result)
         return result
     }
-
-//    fun replaceTextWithNumbersInLine(line: String): String {
-//        var result = line
-//        while(result.findAnyOf(letterNumbers.keys) != null) {
-//            val found = result.findAnyOf(letterNumbers.keys)
-//            if (found != null) {
-//                val replacement = letterNumbers[found.second]
-//                result = result.replaceRange(found.first, found.first + found.second.length, replacement.toString())
-//            }
-//        }
-//        println(result)
-//        return result
-//    }
 
     fun fixLines(allLines: List<String>): List<String> {
         return allLines.stream().map { l -> replaceTextWithNumbersInLine(l) }.toList()

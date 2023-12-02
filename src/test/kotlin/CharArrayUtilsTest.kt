@@ -34,7 +34,7 @@ class CharArrayUtilsTest {
         assertEquals(13, number)
 
         val n2 = cau.mapFirstAndLastDigitToNumber("lpbjvpbtdfvtxtdvkpjs7qrvddkzmjtlqtg".toCharArray())
-        assertEquals(7, n2)
+        assertEquals(77, n2)
 
         val n3 = cau.mapFirstAndLastDigitToNumber("qd84vmvgmssixsix8on8tps".toCharArray())
         assertEquals(88, n3)
