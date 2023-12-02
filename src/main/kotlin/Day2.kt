@@ -3,13 +3,16 @@ import day2.GameFactory
 
 class Day2 {
 
-    fun calculate(input: List<String>): Int =
-        input.stream()
+    fun calculate(input: List<String>): Int{
+        val list = input.stream()
             .map { line -> GameFactory().createGameFromLine(line) }
             .filter { game -> isPossible(game) }
             .map { game -> game.id }
             .toList()
-            .sum()
+
+        println(list)
+        return list.sum()
+    }
 
     //  only 12 red cubes, 13 green cubes, and 14 blue cubes
     private fun isPossible(game: Game) : Boolean {

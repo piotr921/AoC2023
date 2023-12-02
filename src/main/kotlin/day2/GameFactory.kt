@@ -17,13 +17,21 @@ class GameFactory {
                 val throwTrimmed = th.trim()
                 val cubes = throwTrimmed.split(" ")
                 when(cubes[1]) {
-                    "green" -> greenAmount += cubes[0].toInt()
-                    "red" -> redAmount += cubes[0].toInt()
-                    "blue" -> blueAmount += cubes[0].toInt()
+                    "green" -> greenAmount = selectBigger(greenAmount, cubes[0].toInt())
+                    "red" -> redAmount = selectBigger(redAmount, cubes[0].toInt())
+                    "blue" -> blueAmount = selectBigger(blueAmount, cubes[0].toInt())
                     else -> throw RuntimeException(cubes[1] + " unknown")
                 }
             }
         }
         return Game(idParts[1].toInt(), redAmount, greenAmount, blueAmount)
+    }
+
+    private fun selectBigger(current: Int, newValue: Int) : Int {
+        return if (newValue > current) {
+            newValue
+        } else {
+            current;
+        }
     }
 }

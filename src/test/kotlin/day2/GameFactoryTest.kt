@@ -10,8 +10,8 @@ class GameFactoryTest {
         val game = GameFactory().createGameFromLine(line)
 
         assertEquals(3, game.id)
-        assertEquals(12, game.green)
-        assertEquals(31, game.blue)
+        assertEquals(4, game.green)
+        assertEquals(10, game.blue)
         assertEquals(1, game.red)
     }
 }
