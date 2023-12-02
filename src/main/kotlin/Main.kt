@@ -1,21 +1,12 @@
 fun main(args: Array<String>) {
     val fr = FileReader()
-    val day1 = Day1()
+    val day2 = Day2()
     println("Hello Advent Of Code 2023!")
 
-    val allLines = fr.readAllLines("1.txt")
+    val allLines = fr.readAllLines("2.txt")
+    val d2 = day2.calculate(allLines)
 
-    // Part 1
-//    val result = day1.calculateCalibrationValue(allLines)
-//    println(result)
+    // 224 - your answer is too low
+    println(d2)
 
-    // Part 2
-    val allLines2 = day1.fixLines(allLines)
-    val result2 = day1.calculateCalibrationValue(allLines2)
-
-    // 55431 too high
-    // 47191 -> wrong
-    // 47248 -> wrong
-    // 52418 -> wrong
-    println(result2)
 }
