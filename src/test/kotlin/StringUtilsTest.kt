@@ -1,5 +1,6 @@
 import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
+import kotlin.test.assertTrue
 
 class StringUtilsTest {
 
@@ -27,5 +28,10 @@ class StringUtilsTest {
         val updated = s.findLastAnyOf(setOf("one", "two", "three"))
         val res = s.replaceRange(updated!!.first, updated.first + "three".length, "3")
         assertEquals("three1abc3", res)
+    }
+
+    @Test
+    fun shouldFindStartsWith() {
+       assertEquals("26", "23*3".split(Regex("\\W")).sumOf { it.toInt() }.toString())
     }
 }
