@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
     val allLines = fr.readAllLines("3.txt")
     val d3 = day3.calcSumOfEngineParts(allLines)
 
-    // 224 - your answer is too low
+    // 539221 - your answer is too low.
     println(d3)
 
 }

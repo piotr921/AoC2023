@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class Day3Test {
@@ -65,7 +65,8 @@ class Day3Test {
     fun specialCharInLineBelow_shouldReturnNumber() {
         val input = listOf(
             "21..",
-            "#...")
+            "#..."
+        )
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(21, sum)
     }
@@ -74,7 +75,8 @@ class Day3Test {
     fun specialCharInLineBelowBeforeNumber_shouldReturnNumber() {
         val input = listOf(
             ".51..",
-            "#...")
+            "#..."
+        )
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(51, sum)
     }
@@ -83,7 +85,8 @@ class Day3Test {
     fun specialCharInLineBelowAfterNumber_shouldReturnNumber() {
         val input = listOf(
             "59.",
-            "..#")
+            "..#"
+        )
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(59, sum)
     }
@@ -92,8 +95,58 @@ class Day3Test {
     fun specialCharInLineBelowAndValidNumbersInBothLines_shouldReturnSum() {
         val input = listOf(
             "5..*20..4.",
-            ".#.11#....")
+            ".#.11#...."
+        )
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(36, sum)
+    }
+
+    @Test
+    fun specialCharInLineAboveBeforeNumber_shouldReturnNumber() {
+        val input = listOf(
+            "#...",
+            ".43..",
+        )
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(43, sum)
+    }
+
+    @Test
+    fun specialCharInLineAboveAfterNumber_shouldReturnNumber() {
+        val input = listOf(
+            "..#",
+            "90."
+        )
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(90, sum)
+    }
+
+    @Test
+    fun specialCharInLineBelowAndLineAboveValidNumbersInBothLines_shouldReturnSum() {
+        val input = listOf(
+            "........@.",
+            "5..*20..44.",
+            ".#.11#...."
+        )
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(80, sum)
+    }
+
+    @Test
+    fun complexCase() {
+        val input = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(4361, sum)
     }
 }

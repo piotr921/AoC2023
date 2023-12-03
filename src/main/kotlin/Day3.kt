@@ -1,24 +1,20 @@
 class Day3 {
 
-    val lineLength = 140
-
     fun calcSumOfEngineParts(input: List<String>): Int {
         var sum = 0
         input.forEachIndexed { index, line ->
             run {
-                var lineBelow = "";
-                if (index + 1 <= input.size - 1) {
-                    lineBelow = input[index + 1]
-                }
-                sum += sumNumberInLine(line, lineBelow)
+                val lineBelow = input.getOrElse(index + 1) { "" }
+                val lineAbove = input.getOrElse(index - 1) { "" }
+                sum += sumNumberInLine(line, lineBelow, lineAbove)
             }
         }
         return sum
     }
 
 
-    private fun sumNumberInLine(line: String, lineBelow: String): Int {
-        val y = line
+    private fun sumNumberInLine(line: String, lineBelow: String, lineAbove: String): Int {
+        return line
             .split(".")
             .filter { it != "" }
             .map { it ->
@@ -26,9 +22,9 @@ class Day3 {
                     it.substring(1)
                 } else if (specialCharIsAtTheEnd(it)) {
                     it.substring((0..it.length - 2))
-                } else if (lineBelow != "" && specialCharIsInLineBelow(it, line, lineBelow)) {
+                } else if (lineBelow != "" && specialCharIsInOtherLine(it, line, lineBelow)) {
                     it
-                } else if (specialCharIsInLineAbove(it)) {
+                } else if (lineAbove != "" && specialCharIsInOtherLine(it, line, lineAbove)) {
                     it
                 } else if (!Regex("\\W").containsMatchIn(it)) {
                     "0"
@@ -37,19 +33,14 @@ class Day3 {
                 }
 
             }.sumOf { it.takeIf { it.isNotBlank() }?.toInt() ?: 0 }
-        return y
     }
 
-    private fun specialCharIsInLineBelow(it: String, line: String, lineBelow: String): Boolean {
+    private fun specialCharIsInOtherLine(it: String, line: String, lineBelow: String): Boolean {
         val numberIndex = line.indexOf(it)
         val searchStart = (numberIndex - 1).coerceAtLeast(0)
         val searchEnd = (numberIndex + it.length + 1).coerceAtMost(lineBelow.length)
         val filtered = lineBelow.substring(searchStart, searchEnd).filter { c -> c != '.' }
         return Regex("\\W").containsMatchIn(filtered)
-    }
-
-    private fun specialCharIsInLineAbove(it: String): Boolean {
-        return false
     }
 
     private fun specialCharIsAtTheEnd(it: String) = !it.toCharArray()[it.length - 1].isDigit()
