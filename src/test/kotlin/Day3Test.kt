@@ -2,19 +2,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class Day3Test {
-
-
-//    @Test
-//    fun shouldFindNumbers() {
-//        val input = ".......12.......935............184.720...243........589.652..........435..........483.............6...........................904..........."
-//        val result = Day3().findNumberInLine(input)
-//        assertEquals(11, result.size)
-//
-//        val i2 = "....#..........+...*.......*..........................&......129+......491...................877....715.......................270.......#..."
-//        val r2 = Day3().findNumberInLine(i2)
-//        assertEquals(5, r2.size)
-//    }
-
     @Test
     fun oneNumberWithSpecialCharAtTheBeginning_shouldReturnNumber() {
         val input = listOf("...#13...")

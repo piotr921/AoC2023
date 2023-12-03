@@ -21,7 +21,7 @@ class Day3 {
         val y = line
             .split(".")
             .filter { it != "" && Regex("\\W").containsMatchIn(it) }
-            .map {
+            .map { it ->
                 if (!it.toCharArray()[0].isDigit()) {
                     it.substring(1)
                 } else if (!it.toCharArray()[it.length - 1].isDigit()) {
@@ -30,13 +30,7 @@ class Day3 {
                     it.split(Regex("\\W")).sumOf { it.toInt() }.toString()
                 }
 
-            }.sumOf {
-                if (it != "") {
-                    it.toInt()
-                } else {
-                    0
-                }
-            }
+            }.sumOf { it.takeIf { it.isNotBlank() }?.toInt() ?: 0 }
         return y
     }
 }
