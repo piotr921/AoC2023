@@ -60,4 +60,40 @@ class Day3Test {
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(0, sum)
     }
+
+    @Test
+    fun specialCharInLineBelow_shouldReturnNumber() {
+        val input = listOf(
+            "21..",
+            "#...")
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(21, sum)
+    }
+
+    @Test
+    fun specialCharInLineBelowBeforeNumber_shouldReturnNumber() {
+        val input = listOf(
+            ".51..",
+            "#...")
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(51, sum)
+    }
+
+    @Test
+    fun specialCharInLineBelowAfterNumber_shouldReturnNumber() {
+        val input = listOf(
+            "59.",
+            "..#")
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(59, sum)
+    }
+
+    @Test
+    fun specialCharInLineBelowAndValidNumbersInBothLines_shouldReturnSum() {
+        val input = listOf(
+            "5..*20..4.",
+            ".#.11#....")
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(36, sum)
+    }
 }

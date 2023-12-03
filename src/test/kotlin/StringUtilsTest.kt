@@ -31,7 +31,14 @@ class StringUtilsTest {
     }
 
     @Test
-    fun shouldFindStartsWith() {
+    fun shouldSplit() {
        assertEquals("26", "23*3".split(Regex("\\W")).sumOf { it.toInt() }.toString())
+       assertEquals("23", "23".split(Regex("\\W")).sumOf { it.toInt() }.toString())
+    }
+
+    @Test
+    fun shouldCheckByRegex() {
+        assertEquals(false, Regex("\\W").containsMatchIn("2356"))
+        assertEquals(true, Regex("\\W").containsMatchIn("$2356"))
     }
 }
