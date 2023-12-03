@@ -102,6 +102,16 @@ class Day3Test {
     }
 
     @Test
+    fun specialCharInLineBelowAndDuplicatedCharsInNumbers_shouldReturnSum() {
+        val input = listOf(
+            "55..5.",
+            ".#...."
+        )
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(55, sum)
+    }
+
+    @Test
     fun specialCharInLineAboveBeforeNumber_shouldReturnNumber() {
         val input = listOf(
             "#...",
@@ -133,7 +143,7 @@ class Day3Test {
     }
 
     @Test
-    fun complexCase() {
+    fun complexCases() {
         val input = listOf(
             "467..114..",
             "...*......",
@@ -148,5 +158,28 @@ class Day3Test {
         )
         val sum = Day3().calcSumOfEngineParts(input)
         assertEquals(4361, sum)
+    }
+
+    @Test
+    fun complex_no2() {
+        val i2 = listOf(
+            ".......12.......935............184.720...243........589.652..........435..........483.............6...........................904...........",
+            "......*.....968*.....$............*........=..348...*..........986....*...................459....*........422................#......%482...."
+        )
+
+        val s2 = Day3().calcSumOfEngineParts(i2)
+        assertEquals(5478, s2)
+    }
+
+    @Test
+    fun complex_no3() {
+        val input = listOf(
+        "..........*........................+....@.................812......*..955.....*.....257....../.................../..............545.........",
+        "........668....91..&.........840......+..............566.....+...66.........660..............469.................525...765...........25.....",
+        "...............$...666.979..*........952...122......%............................71......=39...../94.........................132......*.....",
+        )
+
+        val sum = Day3().calcSumOfEngineParts(input)
+        assertEquals(6473, sum)
     }
 }
