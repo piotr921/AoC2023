@@ -1,13 +1,10 @@
 fun main(args: Array<String>) {
     val fr = FileReader()
-    val day3 = Day3()
+    val day4 = Day4()
     println("Hello Advent Of Code 2023!")
 
-    val allLines = fr.readAllLines("3.txt")
-    val d3 = day3.calcSumOfEngineParts(allLines)
+    val allLines = fr.readAllLines("4.txt")
+    val d4 = day4.calcAmountOfScratchcards(allLines)
 
-    // 539221 - your answer is too low.
-    // 540025
-    println(d3)
-
+    println(d4)
 }
