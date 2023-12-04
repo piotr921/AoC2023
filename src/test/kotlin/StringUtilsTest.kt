@@ -1,6 +1,5 @@
-import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertTrue
+import kotlin.test.assertEquals
 
 class StringUtilsTest {
 
@@ -32,13 +31,34 @@ class StringUtilsTest {
 
     @Test
     fun shouldSplit() {
-       assertEquals("26", "23*3".split(Regex("\\W")).sumOf { it.toInt() }.toString())
-       assertEquals("23", "23".split(Regex("\\W")).sumOf { it.toInt() }.toString())
+        assertEquals("26", "23*3".split(Regex("\\W")).sumOf { it.toInt() }.toString())
+        assertEquals("23", "23".split(Regex("\\W")).sumOf { it.toInt() }.toString())
     }
 
     @Test
     fun shouldCheckByRegex() {
         assertEquals(false, Regex("\\W").containsMatchIn("2356"))
         assertEquals(true, Regex("\\W").containsMatchIn("$2356"))
+    }
+
+    @Test
+    fun asteriskRegexTest() {
+        val regex = Regex("""(\d+)\s*\*\s*(\d+)""")
+        val matchResult = regex.find("...11*11...12*12...")
+        val result = matchResult?.let {
+            val (before, after) = it.destructured
+            before.toInt() * after.toInt()
+        }
+        assertEquals(121, result)
+    }
+
+    @Test
+    fun shouldFindNumberAroundAsterisk() {
+        assertEquals(69, listOf("23*3".substring(0, 2), "23*3".substring(3))
+            .flatMap { s ->
+                s.split(".").filter { c -> c != "" }
+            }
+            .map { s -> s.toInt() }
+            .fold(1) { acc, element -> acc * element })
     }
 }
