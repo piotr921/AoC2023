@@ -7,7 +7,6 @@ class Day4 {
         var cardNumber = 0
         while (cardNumber < initialCards) {
             (1..emptyMutableMap.getOrDefault(cardNumber, 1)).forEach { it ->
-               println("card number $cardNumber #$it")
                 val result = countWinningNumbersInLine(input[cardNumber])
                 (cardNumber..cardNumber + result).forEach { card ->
                     val noOfCards = emptyMutableMap.getOrDefault(card, 1)
