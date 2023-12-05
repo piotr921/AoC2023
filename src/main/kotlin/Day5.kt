@@ -2,17 +2,20 @@ import day5.Seed
 
 class Day5 {
 
+    fun findClosestLocationSeparately(input: List<String>): Long {
+        val seeds = extractSeedsSeparately(input)
+        return findClosestLocation(input, seeds)
+    }
+
+    fun findClosestLocationForRange(input: List<String>): Long {
+        val seeds = extractSeedsByRange(input)
+        return findClosestLocation(input, seeds)
+    }
+
     // 50 98 2
     // 52 50 48
     // The first line has a destination range start of 50, a source range start of 98, and a range length of 2.
-    fun findClosestLocation(input: List<String>): Long {
-        val seeds = input[0]
-            .replace("seeds:", "")
-            .split(" ")
-            .filter { s -> s != "" }
-            .map { s -> s.toLong() }
-            .map { seedId -> Seed(seedId) }
-
+    private fun findClosestLocation(input: List<String>, seeds: List<Seed>): Long {
         val soilMappings = extractMappings(input, "seed-to-soil map:", "soil-to-fertilizer map:")
         seeds.forEach { seed -> seed.addSoilId(soilMappings) }
 
@@ -35,6 +38,28 @@ class Day5 {
         seeds.forEach { seed -> seed.addLocationId(locationMappings) }
 
         return seeds.map { s -> s.location }.min()
+    }
+
+    private fun extractSeedsSeparately(input: List<String>) = input[0]
+        .replace("seeds:", "")
+        .split(" ")
+        .filter { s -> s != "" }
+        .map { s -> s.toLong() }
+        .map { seedId -> Seed(seedId) }
+
+    private fun extractSeedsByRange(input: List<String>): List<Seed> {
+        val ranges = input[0]
+            .replace("seeds:", "")
+            .split(" ")
+            .filter { s -> s != "" }
+            .map { s -> s.toLong() }
+
+        val y = ranges.chunked(2) { (first, second) -> Pair(first, second) }
+        val allSeedIds: MutableList<Long> = emptyList<Long>().toMutableList()
+        for (range in y) {
+            allSeedIds += (range.first..<range.first + range.second).toList()
+        }
+        return allSeedIds.map { l -> Seed(l) }
     }
 
     private fun extractMappings(input: List<String>, startLine: String, endLine: String) = input

@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     println("Hello Advent Of Code 2023!")
 
     val allLines = fr.readAllLines("5.txt")
-    val d5 = day5.findClosestLocation(allLines)
+    val d5 = day5.findClosestLocationForRange(allLines)
 
     println(d5)
 }
