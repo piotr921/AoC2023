@@ -40,7 +40,7 @@ class Seed(
     }
 
     private fun findCorrespondingRange(inputId: Long, mappings: List<List<Long>>) = mappings
-        .find { mappingList -> (mappingList[1]..<mappingList[1] + mappingList[2]).contains(inputId) }
+        .find { mappingList -> (inputId >= mappingList[1] && inputId < mappingList[1] + mappingList[2]) }
         .orEmpty()
 
 
