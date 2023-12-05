@@ -1,10 +1,10 @@
 fun main(args: Array<String>) {
     val fr = FileReader()
-    val day4 = Day4()
+    val day5 = Day5()
     println("Hello Advent Of Code 2023!")
 
-    val allLines = fr.readAllLines("4.txt")
-    val d4 = day4.calcAmountOfScratchcards(allLines)
+    val allLines = fr.readAllLines("5.txt")
+    val d5 = day5.findClosestLocation(allLines)
 
-    println(d4)
+    println(d5)
 }
