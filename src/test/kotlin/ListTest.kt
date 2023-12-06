@@ -27,4 +27,16 @@ class ListTest {
 
         assertEquals(listOf(49, 53, 8), output)
     }
+
+    @Test
+    fun splitTest() {
+        val size = 7
+        val input = (1..size)
+        val result = input.partition { it <= size / 2 }
+
+        println(input)
+//        result.forEach { l -> println(l) }
+        println(result.first)
+        println(result.second)
+    }
 }

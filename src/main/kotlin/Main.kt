@@ -1,10 +1,10 @@
 fun main(args: Array<String>) {
     val fr = FileReader()
-    val day5 = Day5()
+    val day = Day6()
     println("Hello Advent Of Code 2023!")
 
-    val allLines = fr.readAllLines("5.txt")
-    val d5 = day5.findClosestLocationForRange(allLines)
+    val allLines = fr.readAllLines("6-2.txt")
+    val result = day.calcNumberOfWaysToBreakRecord(allLines)
 
-    println(d5)
+    println(result)
 }
