@@ -18,18 +18,19 @@ class Day5 {
         .filter { s -> s != "" }
         .map { s -> s.toLong() }
         .map { seedId -> Seed(seedId) }
+        .asSequence()
 
-    private fun extractSeedsByRange(input: List<String>): List<Seed> {
+    private fun extractSeedsByRange(input: List<String>): Sequence<Seed> {
         val ranges = input[0]
             .replace("seeds:", "")
             .split(" ")
             .filter { s -> s != "" }
             .map { s -> s.toLong() }
 
-        val y = ranges.chunked(2) { (first, second) -> Pair(first, second) }
-        val allSeedIds: MutableList<Long> = emptyList<Long>().toMutableList()
+        val y = ranges.zipWithNext()
+        var allSeedIds: Sequence<Long> = emptySequence()
         for (range in y) {
-            allSeedIds += (range.first..<range.first + range.second).toList()
+            allSeedIds += (range.first..<range.first + range.second).asSequence()
         }
         return allSeedIds.map { l -> Seed(l) }
     }
@@ -37,7 +38,7 @@ class Day5 {
     // 50 98 2
     // 52 50 48
     // The first line has a destination range start of 50, a source range start of 98, and a range length of 2.
-    private fun findClosestLocation(input: List<String>, seeds: List<Seed>): Long {
+    private fun findClosestLocation(input: List<String>, seeds: Sequence<Seed>): Long {
         val soilMappings = extractMappings(input, "seed-to-soil map:", "soil-to-fertilizer map:")
         seeds.forEach { seed -> seed.addSoilId(soilMappings) }
 
