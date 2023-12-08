@@ -1,10 +1,10 @@
 fun main(args: Array<String>) {
     val fr = FileReader()
-    val day = Day6()
+    val day = Day8()
     println("Hello Advent Of Code 2023!")
 
-    val allLines = fr.readAllLines("6-2.txt")
-    val result = day.calcNumberOfWaysToBreakRecord(allLines)
+    val allLines = fr.readAllLines("8.txt")
+    val result = day.countStepsToZZZ(allLines)
 
     println(result)
 }

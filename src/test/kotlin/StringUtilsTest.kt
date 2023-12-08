@@ -61,4 +61,18 @@ class StringUtilsTest {
             .map { s -> s.toInt() }
             .fold(1) { acc, element -> acc * element })
     }
+
+    @Test
+    fun shouldMapDirections() {
+        val s = "FQN = (LRB, FNR)"
+        val regex = Regex("\\b\\w+\\b")
+        val instructions = mutableMapOf<String, List<String>>()
+
+        val updated = s.split(" = ")
+        val list = regex.findAll(updated[1])
+            .map { it.value }
+            .toList()
+        instructions.putIfAbsent(updated[0], list)
+        println(instructions)
+    }
 }
