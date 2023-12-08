@@ -2,18 +2,14 @@ class Day8 {
 
     fun countStepsToZZZ(input: List<String>): Int {
         var stepCounter = 0
+        var nextDestination = "AAA"
         val steps = input[0].toCharArray()
         val map = mapInputDataIntoMap(input)
-
-        var availableDestinations = map["AAA"].orEmpty()
-        var nextStep = selectNextStep(steps, stepCounter)
-        var nextDestination = selectNextDestination(nextStep, availableDestinations)
+        nextDestination = selectNextDestination(selectNextStep(steps, stepCounter),  map[nextDestination].orEmpty())
 
         while (nextDestination != "ZZZ") {
             stepCounter += 1
-            nextStep = selectNextStep(steps, stepCounter)
-            availableDestinations = map[nextDestination].orEmpty()
-            nextDestination = selectNextDestination(nextStep, availableDestinations)
+            nextDestination = selectNextDestination(selectNextStep(steps, stepCounter), map[nextDestination].orEmpty())
         }
         return stepCounter + 1
     }
