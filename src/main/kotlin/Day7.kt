@@ -1,6 +1,20 @@
 class Day7 {
     data class Data(val deck: String, val value: Long)
-    class DataNoString(private val deck: List<Int>, val value: Long) {
+    class Hand(private val deck: List<Int>, val value: Long) {
+
+        fun maxOccurrences(): Pair<Int, Int> {
+            val occurrencesMap = mutableMapOf<Int, Int>()
+            for (i in deck) {
+                occurrencesMap.putIfAbsent(i, 0)
+                occurrencesMap[i] = occurrencesMap[i]!! + 1
+            }
+            val mo = occurrencesMap.maxBy { it.value }
+            return if(mo.value != 1) {
+                mo.toPair()
+            } else {
+                Pair(maxValueAtPlace(0), 1)
+            }
+        }
 
         fun maxValueAtPlace(placeInDeck: Int): Int {
             return deck.sortedDescending()[placeInDeck]
@@ -30,23 +44,29 @@ class Day7 {
     fun calcBidNumber(input: List<String>): Long {
         var result = 0L
 
-        val hands = input.map { hand ->
+        val hands = input.map { line ->
             run {
-                val deckAndValueArray = hand.split(" ")
-                DataNoString(
-                    deckAndValueArray[0].toCharArray().map { c -> cardValues.getValue(c) },
+                val deckAndValueArray = line.split(" ")
+                Hand(
+                    deckAndValueArray[0].toCharArray().map { c -> cardValues.getValue(c) }.sorted(),
                     deckAndValueArray[1].toLong()
                 )
             }
         }
 
-        val handComparatorFirst = Comparator<DataNoString> { deck1, deck2 ->
-            deck1.maxValueAtPlace(0) - deck2.maxValueAtPlace(0)
+        val occComparator = Comparator<Hand> { deck1, deck2 ->
+            val maxOccurrenceDiff = deck1.maxOccurrences().second - deck2.maxOccurrences().second
+            if (maxOccurrenceDiff != 0) {
+                maxOccurrenceDiff
+            } else {
+                deck1.maxOccurrences().first - deck2.maxOccurrences().first
+            }
         }
 
         val sorted = hands
             .sortedWith(
-                handComparatorFirst
+                occComparator
+//                    .thenComparator { deck1, deck2 -> deck1.maxValueAtPlace(0) - deck2.maxValueAtPlace(0) }
                     .thenComparator { deck1, deck2 -> deck1.maxValueAtPlace(1) - deck2.maxValueAtPlace(1) }
                     .thenComparator { deck1, deck2 -> deck1.maxValueAtPlace(2) - deck2.maxValueAtPlace(2) }
                     .thenComparator { deck1, deck2 -> deck1.maxValueAtPlace(3) - deck2.maxValueAtPlace(3) }

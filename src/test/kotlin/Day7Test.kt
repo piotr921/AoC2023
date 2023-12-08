@@ -12,7 +12,7 @@ class Day7Test {
             "23459 29"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(29 * 3 + 34 * 2 + 23, result)
     }
 
@@ -24,7 +24,7 @@ class Day7Test {
             "2345A 11"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(11 * 3 + 22 * 2 + 33, result)
     }
 
@@ -36,7 +36,7 @@ class Day7Test {
             "2345Q 20"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(29 * 3 + 25 * 2 + 20, result)
     }
 
@@ -48,7 +48,7 @@ class Day7Test {
             "AK38Q 12"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(12 * 3 + 4 * 2 + 9, result)
     }
 
@@ -60,7 +60,7 @@ class Day7Test {
             "AKQ98 38"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(28 * 3 + 83 * 2 + 38, result)
     }
 
@@ -72,21 +72,57 @@ class Day7Test {
             "AKQJ8 8"
         )
 
-        val result = Day7().calcBidNumber(input)
+        val result = Day7DifferentApproach().calcBidNumber(input)
         assertEquals(8 * 3 + 7 * 2 + 3, result)
     }
 
-//    @Test
-//    fun pairShouldBeHigherThanSingleCard() {
-//        val input = listOf(
-//            "23456 23",
-//            "34567 34",
-//            "23459 29"
-//        )
-//
-//        val result = Day7().calcBidNumber(input)
-//        assertEquals(29 * 3 + 34 * 2 + 23, result)
-//    }
+    @Test
+    fun pairShouldBeHigherThanSingleCard() {
+        val input = listOf(
+            "22456 23",
+            "34567 34",
+            "23459 29"
+        )
+
+        val result = Day7DifferentApproach().calcBidNumber(input)
+        assertEquals(23 * 3 + 29 * 2 + 34, result)
+    }
+
+    @Test
+    fun whenPairIsTheSameHigherNumberShouldCount() {
+        val input = listOf(
+            "33456 56",
+            "56733 72",
+            "23354 12"
+        )
+
+        val result = Day7DifferentApproach().calcBidNumber(input)
+        assertEquals(72 * 3 + 56 * 2 + 12, result)
+    }
+
+    @Test
+    fun higherPairShouldCount() {
+        val input = listOf(
+            "26968 68",
+            "72347 47",
+            "28584 84"
+        )
+
+        val result = Day7DifferentApproach().calcBidNumber(input)
+        assertEquals(84 * 3 + 47 * 2 + 68, result)
+    }
+
+    @Test
+    fun twoPairsShouldBeHigherThanOne() {
+        val input = listOf(
+            "22334 22",
+            "88567 88",
+            "QQ345 45"
+        )
+
+        val result = Day7DifferentApproach().calcBidNumber(input)
+        assertEquals(22 * 3 + 45 * 2 + 88, result)
+    }
 
 //    @Test
 //    fun complexTest() {
@@ -99,7 +135,7 @@ class Day7Test {
 //
 //            )
 //
-//        val result = Day7().calcBidNumber(input)
+//        val result = Day7DifferentApproach().calcBidNumber(input)
 //        assertEquals(6440, result)
 //    }
 //
